@@ -10,13 +10,27 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Karatsuba!");
-        System.out.println("Please enter the two numbers you want to multiply,\n in unsigned decimal representation");
-        BigInteger x = readNumber();
-        System.out.println("Good job! Now another one.");
-        BigInteger y = readNumber();
-        BigInteger result = Karatsuba.mult(x, y);
-        System.out.println("Result:\n" + result);
+        if (args.length > 0) {
+            if(args.length != 2){
+                System.out.println("usage for testing: " +
+                        "First parameter number of tests," +
+                        "second parameter length of number");
+            } else {
+                int n = Integer.parseInt(args[0]);
+                BigInteger length = BigInteger.TEN.pow(Integer.parseInt(args[1]) -1);
+                System.out.println("n: " + n);
+                System.out.println("length: " + length);
+                Test.test(n, length);
+            }
+        } else {
+            System.out.println("Welcome to Karatsuba!");
+            System.out.println("Please enter the two numbers you want to multiply,\nin unsigned decimal representation");
+            BigInteger x = readNumber();
+            System.out.println("Good job! Now another one.");
+            BigInteger y = readNumber();
+            BigInteger result = Karatsuba.mult(x, y);
+            System.out.println("Result:\n" + result);
+        }
     }
 
     public static BigInteger readNumber(){
